@@ -21,6 +21,11 @@
   --error: #b3261e;
   --avatar: #7d00ff;
   --badge: #cc0000;
+  --heading-text: #fcfaff;
+  --subtitle-text: #a6a5a5;
+  --button-disabled: #231e24;
+  --placeholder: #bebdbd;
+  --pending: #fdc700;
 }
 
 @theme inline {
@@ -45,6 +50,11 @@
   --color-error: var(--error);
   --color-avatar: var(--avatar);
   --color-badge: var(--badge);
+  --color-heading: var(--heading-text);
+  --color-subtitle: var(--subtitle-text);
+  --color-button-disabled: var(--button-disabled);
+  --color-placeholder: var(--placeholder);
+  --color-pending: var(--pending);
 
   --font-display: var(--font-space-grotesk), Arial, sans-serif;
   --font-sans: Arial, Helvetica, sans-serif;
@@ -66,9 +76,20 @@
   background-image: linear-gradient(180deg, #13011d 0%, #0b0111 90.545%);
 }
 
+/* Figma "linear card" */
+@utility bg-surface {
+  background-image: linear-gradient(180deg, #1a0a2c 0%, #1a0c2a 99.981%);
+}
+
 /* Tab bar sits 32px above the screen edge, sharing that space with the home indicator */
 @utility pb-tabbar {
   padding-bottom: max(0px, calc(32px - env(safe-area-inset-bottom)));
+}
+
+/* Inconsolata spaced out to Consolas' 0.55em advance so long codes wrap where the design does */
+@utility font-code {
+  font-family: var(--font-inconsolata), monospace;
+  letter-spacing: 0.05em;
 }
 
 @utility pt-safe {
@@ -77,6 +98,18 @@
 
 @utility pb-safe {
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Keeps content clear of the home indicator: the safe area on phones, the simulated bar in the desktop frame */
+@utility pb-home {
+  padding-bottom: env(safe-area-inset-bottom);
+  @variant frame {
+    padding-bottom: 21px;
+  }
+  /* Screens marked data-bleed-bottom (e.g. the keypad) draw under the indicator themselves */
+  &:has([data-bleed-bottom]) {
+    padding-bottom: 0;
+  }
 }
 
 html,
@@ -98,4 +131,36 @@ a {
   -webkit-user-select: none;
   user-select: none;
   touch-action: manipulation;
+}
+
+/* Waiting-for-deposit spinner: ticks round in 8 steps from the design's resting angle */
+@keyframes spin-from {
+  from {
+    transform: rotate(var(--spin-start, 0deg));
+  }
+  to {
+    transform: rotate(calc(var(--spin-start, 0deg) + 360deg));
+  }
+}
+
+@keyframes progress-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
 }

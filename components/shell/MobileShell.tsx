@@ -11,7 +11,7 @@ export default function MobileShell({ children }: { children: React.ReactNode })
     <div className="flex min-h-dvh items-center justify-center frame:bg-[radial-gradient(ellipse_at_center,rgba(152,16,250,0.18),transparent_60%)] frame:py-6">
       <div className="bg-app relative flex h-dvh w-full flex-col overflow-hidden frame:h-[min(812px,calc(100dvh-48px))] frame:w-[375px] frame:rounded-[44px] frame:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_30px_80px_rgba(0,0,0,0.6)]">
         <StatusBar />
-        <main className="pt-safe flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain [scrollbar-width:none]">
+        <main className="pt-safe pb-home flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain [scrollbar-width:none]">
           {children}
         </main>
         <HomeIndicator />

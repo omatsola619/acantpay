@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Lato, Nunito, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
+import { Inconsolata, Lato, Nunito, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import MobileShell from "@/components/shell/MobileShell";
 import ServiceWorker from "@/components/shell/ServiceWorker";
 import "./globals.css";
@@ -7,7 +7,7 @@ import "./globals.css";
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500", "700"],
 });
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -20,6 +20,13 @@ const nunito = Nunito({
   variable: "--font-nunito-sans",
   subsets: ["latin"],
   weight: ["500", "600"],
+});
+
+// Stand-in for Consolas (used for addresses and bank codes), which isn't freely available
+const inconsolata = Inconsolata({
+  variable: "--font-inconsolata",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 const lato = Lato({
@@ -51,7 +58,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${plusJakartaSans.variable} ${nunito.variable} ${lato.variable} antialiased`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${plusJakartaSans.variable} ${nunito.variable} ${lato.variable} ${inconsolata.variable} antialiased`}>
       <body>
         <MobileShell>{children}</MobileShell>
         <ServiceWorker />

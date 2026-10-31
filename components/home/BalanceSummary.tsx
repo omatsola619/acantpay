@@ -1,12 +1,20 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import { useState } from "react";
+import BottomSheet from "@/components/ui/BottomSheet";
+import OptionCard from "@/components/ui/OptionCard";
 import { formatUsd } from "@/lib/mock-data";
+import { methods } from "@/lib/sell-data";
+
+const pillClass =
+  "flex w-[132px] items-center justify-center rounded-full bg-on-primary px-6 py-3 font-nunito text-[12px] leading-4 font-medium text-fg-base transition active:scale-[0.97] active:opacity-90";
 
 /** "Total Value" with a tap-to-hide balance, followed by the Buy / Sell / more actions. */
 export default function BalanceSummary({ total }: { total: number }) {
   const [hidden, setHidden] = useState(false);
+  const [sellOpen, setSellOpen] = useState(false);
 
   return (
     <>
@@ -29,15 +37,12 @@ export default function BalanceSummary({ total }: { total: number }) {
       </div>
 
       <div className="flex w-full items-center justify-between">
-        {["Buy", "Sell"].map((label) => (
-          <button
-            key={label}
-            type="button"
-            className="flex w-[132px] items-center justify-center rounded-full bg-on-primary px-6 py-3 font-nunito text-[12px] leading-4 font-medium text-fg-base transition active:scale-[0.97] active:opacity-90"
-          >
-            {label}
-          </button>
-        ))}
+        <Link href="/deposit" className={pillClass}>
+          Buy
+        </Link>
+        <button type="button" onClick={() => setSellOpen(true)} className={pillClass}>
+          Sell
+        </button>
         <button
           type="button"
           aria-label="More actions"
@@ -46,6 +51,12 @@ export default function BalanceSummary({ total }: { total: number }) {
           <img src="/icons/home/dots.svg" alt="" width={20} height={20} />
         </button>
       </div>
+
+      <BottomSheet open={sellOpen} onClose={() => setSellOpen(false)} title="Choose Method">
+        {methods.map((m) => (
+          <OptionCard key={m.id} href={"href" in m ? m.href : undefined} icon={m.icon} title={m.title} subtitle={m.description} />
+        ))}
+      </BottomSheet>
     </>
   );
 }

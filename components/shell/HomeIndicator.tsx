@@ -1,11 +1,8 @@
-/** Simulated iOS home indicator, only shown inside the desktop device frame. */
+/** Simulated iOS home indicator, overlaid at the bottom of the desktop device frame. */
 export default function HomeIndicator() {
   return (
-    <>
-      <div className="pb-safe shrink-0 frame:hidden" />
-      <div className="pointer-events-none hidden h-[21px] shrink-0 items-end justify-center pb-[8px] frame:flex">
-        <div className="h-[5px] w-[139px] rounded-full bg-white" />
-      </div>
-    </>
+    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-50 hidden h-[21px] items-end justify-center pb-[8px] frame:flex">
+      <div className="h-[5px] w-[139px] rounded-full bg-white" />
+    </div>
   );
 }
