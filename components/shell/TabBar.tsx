@@ -19,14 +19,14 @@ export default function TabBar() {
   const pathname = usePathname();
 
   return (
-    <nav className="pb-tabbar shrink-0 overflow-hidden border-t-[0.5px] border-tab-border px-5 pt-8 shadow-[0_4px_4px_rgba(0,0,0,0.25)] frame:pb-[11px]">
+    <nav className="pb-tabbar shrink-0 overflow-hidden border-t-[0.5px] border-tab-border px-5 pt-2 shadow-[0_4px_4px_rgba(0,0,0,0.25)] frame:pb-0">
       <ul className="flex w-full items-center justify-between">
         {tabs.map((tab) => {
           const active = pathname === tab.href;
           // Figma only provides Home in its active (white) state and the others inactive (grey),
           // so the other states are tinted with a filter until the designer supplies them.
           const tint = active ? (tab.label === "Home" ? "" : "brightness-0 invert") : tab.label === "Home" ? "opacity-75" : "";
-          const icon = <img src={tab.icon} alt="" width={32} height={32} className={tint} />;
+          const icon = <img src={tab.icon} alt="" width={28} height={28} className={tint} />;
           return (
             <li key={tab.label}>
               {tab.href ? (

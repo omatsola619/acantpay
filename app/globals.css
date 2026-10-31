@@ -81,9 +81,9 @@
   background-image: linear-gradient(180deg, #1a0a2c 0%, #1a0c2a 99.981%);
 }
 
-/* Tab bar sits 32px above the screen edge, sharing that space with the home indicator */
+/* Tab bar keeps at least 8px below its icons, sharing that space with the home indicator */
 @utility pb-tabbar {
-  padding-bottom: max(0px, calc(32px - env(safe-area-inset-bottom)));
+  padding-bottom: max(0px, calc(8px - env(safe-area-inset-bottom)));
 }
 
 /* Inconsolata spaced out to Consolas' 0.55em advance so long codes wrap where the design does */
