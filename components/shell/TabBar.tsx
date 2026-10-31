@@ -19,7 +19,7 @@ export default function TabBar() {
   const pathname = usePathname();
 
   return (
-    <nav className="pb-tabbar shrink-0 overflow-hidden border-t-[0.5px] border-tab-border px-5 pt-2 shadow-[0_4px_4px_rgba(0,0,0,0.25)] frame:pb-0">
+    <nav className="pb-tabbar shrink-0 overflow-hidden border-t-[0.5px] border-tab-border px-5 pt-3 shadow-[0_4px_4px_rgba(0,0,0,0.25)] frame:pb-1">
       <ul className="flex w-full items-center justify-between">
         {tabs.map((tab) => {
           const active = pathname === tab.href;
