@@ -9,8 +9,8 @@ type Tab = { label: string; icon: string; href?: string };
 // Tabs without an href don't have screens yet; they render but don't navigate.
 const tabs: Tab[] = [
   { label: "Home", icon: "/icons/tabs/home.svg", href: "/home" },
-  { label: "Markets", icon: "/icons/tabs/markets.svg" },
-  { label: "Cards", icon: "/icons/tabs/cards.svg" },
+  { label: "Markets", icon: "/icons/tabs/markets.svg", href: "/markets" },
+  { label: "Cards", icon: "/icons/tabs/cards.svg", href: "/cards" },
   { label: "Settings", icon: "/icons/tabs/settings.svg", href: "/settings" },
 ];
 
