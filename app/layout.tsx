@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inconsolata, Lato, Nunito, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import MobileShell from "@/components/shell/MobileShell";
 import ServiceWorker from "@/components/shell/ServiceWorker";
+import { SettingsProvider } from "@/components/settings/SettingsProvider";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -60,7 +61,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${plusJakartaSans.variable} ${nunito.variable} ${lato.variable} ${inconsolata.variable} antialiased`}>
       <body>
-        <MobileShell>{children}</MobileShell>
+        <SettingsProvider>
+          <MobileShell>{children}</MobileShell>
+        </SettingsProvider>
         <ServiceWorker />
       </body>
     </html>

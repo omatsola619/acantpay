@@ -29,8 +29,8 @@ export default function WelcomeScreen() {
       </div>
 
       <div className="flex w-full flex-col gap-4">
-        <Button href="/signup">Create new account</Button>
-        <Button variant="outline" href="/login">
+        <Button href="/home">Create new account</Button>
+        <Button variant="outline" href="/home">
           Log in to existing account
         </Button>
       </div>

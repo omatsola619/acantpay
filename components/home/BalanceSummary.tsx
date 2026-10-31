@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useState } from "react";
 import BottomSheet from "@/components/ui/BottomSheet";
 import OptionCard from "@/components/ui/OptionCard";
-import { formatUsd } from "@/lib/mock-data";
+import { useSettings } from "@/components/settings/SettingsProvider";
+import { formatMoney } from "@/lib/mock-data";
 import { methods } from "@/lib/sell-data";
 
 const pillClass =
@@ -15,6 +16,7 @@ const pillClass =
 export default function BalanceSummary({ total }: { total: number }) {
   const [hidden, setHidden] = useState(false);
   const [sellOpen, setSellOpen] = useState(false);
+  const { currency } = useSettings();
 
   return (
     <>
@@ -33,7 +35,7 @@ export default function BalanceSummary({ total }: { total: number }) {
             )}
           </span>
         </button>
-        <p className="font-display text-[28px] leading-9 font-bold text-on-primary">{hidden ? "$****" : formatUsd(total)}</p>
+        <p className="font-display text-[28px] leading-9 font-bold text-on-primary">{hidden ? "****" : formatMoney(total, currency)}</p>
       </div>
 
       <div className="flex w-full items-center justify-between">

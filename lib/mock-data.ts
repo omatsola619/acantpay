@@ -1,4 +1,5 @@
 // Dummy data for the showcase build. Swap for real API calls later.
+import { usdPrice } from "./sell-data";
 
 export type TransactionType = "deposit" | "withdrawal" | "swap";
 export type TransactionStatus = "successful" | "failed" | "pending";
@@ -31,3 +32,9 @@ export const recentTransactions: Transaction[] = [
 
 export const formatUsd = (value: number) =>
   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
+
+/** Formats a USD amount in the user's default currency (Settings → Default Currency). */
+export const formatMoney = (usd: number, code: string) =>
+  new Intl.NumberFormat("en-US", { style: "currency", currency: code, currencyDisplay: "narrowSymbol" }).format(
+    usd / (usdPrice[code] ?? 1),
+  );

@@ -1,9 +1,9 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
 import { useState } from "react";
 import CurrencyItem from "@/components/deposit/CurrencyItem";
+import BackHeader from "@/components/ui/BackHeader";
+import SearchField from "@/components/ui/SearchField";
 import { currencies, type CurrencyKind } from "@/lib/deposit-data";
 
 type Filter = "all" | CurrencyKind;
@@ -31,12 +31,7 @@ export default function SelectCurrencyScreen() {
   return (
     <div className="flex min-h-0 flex-1 flex-col">
       <div className="flex shrink-0 flex-col gap-8 px-4 pt-3">
-        <div className="flex items-center gap-11">
-          <Link href="/home" aria-label="Back" className="-m-2 p-2 active:opacity-60">
-            <img src="/icons/deposit/arrow-up-24.svg" alt="" width={24} height={24} className="-rotate-90" />
-          </Link>
-          <h1 className="font-display text-[20px] leading-7 font-medium tracking-[-0.02px] text-white">Select Currency</h1>
-        </div>
+        <BackHeader title="Select Currency" backHref="/home" />
 
         <div className="flex gap-3" role="tablist">
           {filters.map((f) => {
@@ -56,17 +51,7 @@ export default function SelectCurrencyScreen() {
           })}
         </div>
 
-        <label className="bg-surface flex w-full items-center gap-2 overflow-hidden rounded-[14px] ring-[0.5px] ring-border ring-inset p-4">
-          <img src="/icons/deposit/search.svg" alt="" width={19.9799} height={19.9799} className="shrink-0" />
-          <input
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search currency..."
-            aria-label="Search currency"
-            className="h-5 min-w-0 flex-1 appearance-none bg-transparent p-0 font-sans text-[16px] leading-normal text-on-primary outline-none placeholder:text-placeholder [&::-webkit-search-cancel-button]:hidden"
-          />
-        </label>
+        <SearchField value={query} onChange={setQuery} placeholder="Search currency..." />
       </div>
 
       <div className="mt-6 flex min-h-0 flex-1 flex-col gap-6 overflow-x-hidden overflow-y-auto px-4 pb-6 [scrollbar-width:none]">
